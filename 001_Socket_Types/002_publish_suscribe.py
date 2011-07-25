@@ -117,5 +117,5 @@ if __name__ == "__main__":                          # Start the logic
 
     except (KeyboardInterrupt, SystemExit):
         print "Received keyboard interrupt, system exiting"
-
-    context.term()
+    finally:
+        context.term()
