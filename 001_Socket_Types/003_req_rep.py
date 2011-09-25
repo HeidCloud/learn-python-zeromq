@@ -1,8 +1,4 @@
 #!/usr/bin/env python2
-import threading
-import time
-import zmq
-
 # REQ and REP sockets work together to establish a synchronous bidirectional flow of data.
 # You can think of REQ and REP much like you'd think of a protocol like HTTP, you send a request,
 # and you get a response. In between the request and response the thread is blocked.
@@ -16,6 +12,10 @@ import zmq
 #                             |
 #                          rep_sock
 #
+
+import threading
+import time
+import zmq
 
 class ReqSocket(threading.Thread):
     """ Definition of the request socket.
@@ -62,11 +62,11 @@ if __name__ == "__main__":                          # Start the logic
     context = zmq.Context()
     try:                                           
         start_time = time.clock()
-        # init the push socket thread
+        # init the REP socket thread
         thread_rep = RepSocket()
         thread_rep.start()
 
-        # init the two pull socket threads
+        # init the two REQ socket threads
         for i in [0,1]:
             thread_req = ReqSocket()
             thread_req.start()
