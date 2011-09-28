@@ -54,12 +54,12 @@ class RepSocket(threading.Thread):
     def run(self):
         """ Binds the port self.port and waits for requests. """
         rep_sock = context.socket(zmq.REP)
-        print "ReqSocket " + str(self.identifier) + " binding port " + str(self.port) + "."
+        print "RepSocket " + str(self.identifier) + " binding port " + str(self.port) + "."
         rep_sock.bind("tcp://127.0.0.1:" + str(self.port))
         message = rep_sock.recv()
         while message:
             print "Received request '" + message + "'"
-            rep_sock.send("ReqSocket " + str(self.identifier) + " says: Polo!")
+            rep_sock.send("RepSocket " + str(self.identifier) + " says: Polo!")
             message = rep_sock.recv()
             
         
